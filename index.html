@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QRtailor — Modern QR Code Generator</title>
+  <meta name="description" content="Generate high-quality QR codes in your browser — offline, dark theme, responsive, download PNG/SVG, copy to clipboard." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="app" id="app">
+    <header class="app__header">
+      <div>
+        <h1 class="brand">QRtailor</h1>
+        <p class="tag">Fast, private QR code generator — fully static, offline‑ready.</p>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section class="card controls" aria-labelledby="controls-heading">
+        <h2 id="controls-heading" class="visually-hidden">QR Controls</h2>
+
+        <label class="field">
+          <span class="label">Content</span>
+          <textarea id="text" placeholder="Enter URL or any text..." rows="3" autocapitalize="off" spellcheck="false" aria-label="QR content"></textarea>
+        </label>
+
+        <div class="row">
+          <label class="field small">
+            <span class="label">Size</span>
+            <input id="size" type="range" min="128" max="2048" step="64" value="512" aria-label="Size" />
+            <output id="sizeValue">512</output>
+          </label>
+
+          <label class="field small">
+            <span class="label">Margin</span>
+            <input id="margin" type="range" min="0" max="64" step="1" value="4" aria-label="Margin" />
+            <output id="marginValue">4</output>
+          </label>
+
+          <label class="field small">
+            <span class="label">Error Level</span>
+            <select id="ecLevel" aria-label="Error correction level">
+              <option value="L">L — Low (7%)</option>
+              <option value="M" selected>M — Medium (15%)</option>
+              <option value="Q">Q — Quartile (25%)</option>
+              <option value="H">H — High (30%)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="field small">
+            <span class="label">Foreground</span>
+            <input id="fg" type="color" value="#ffffff" aria-label="Foreground color" />
+          </label>
+
+          <label class="field small">
+            <span class="label">Background</span>
+            <input id="bg" type="color" value="#000000" aria-label="Background color" />
+          </label>
+
+          <div class="field small actions-field">
+            <span class="label">Actions</span>
+            <div class="actions">
+              <button id="generate" class="btn" aria-live="polite">Generate</button>
+              <button id="exportSvg" class="btn secondary" disabled>Export SVG</button>
+              <button id="download" class="btn secondary" disabled>Download PNG</button>
+              <button id="copy" class="btn secondary" disabled>Copy PNG</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint">Tip: Press Ctrl/Cmd + Enter to generate. Settings are saved locally.</p>
+      </section>
+
+      <section class="card preview" aria-labelledby="preview-heading">
+        <h2 id="preview-heading" class="visually-hidden">QR Preview</h2>
+        <div class="preview__inner">
+          <canvas id="canvas" width="512" height="512" role="img" aria-label="QR code preview"></canvas>
+          <div id="fallback" class="fallback">QR preview will appear here.</div>
+        </div>
+        <p id="status" class="status" aria-live="polite">Ready</p>
+      </section>
+    </div>
+
+    <footer class="meta">
+      <small>Built with HTML, CSS &amp; Vanilla JS • No server • Private (runs locally)</small>
+      <a href="https://github.com/a0wannabee/QRcode" target="_blank" rel="noopener">Repository</a>
+    </footer>
+  </main>
+
+  <!-- Vendored QR lib (local, offline) -->
+  <script src="js/vendor/qrcode.min.js" defer></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>
